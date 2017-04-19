@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+	<!-- Appender 정의 -->
+	<!-- Rolling -->
+	<!-- 로그 파일 롤링이 필요할 경우 주석 제거 (생성 위치는 classpath:logs) 
+	<appender name="fileRollingAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>files/logs/servicelog_%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%logger{36}] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	-->
+	<!-- Console -->
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- Thread 태그 존재 
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%logger{36}] - %msg%n</pattern>
+			-->
+			<!-- Thread 태그 제거(로그가 짧아짐)  -->
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%level][%logger{36}] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Logger 정의 -->
+	<!-- Spring Framework -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.data">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.security">
+		<level value="info" />
+	</logger>
+	<!-- Java -->
+	<logger name="java.sql">
+		<level value="debug" />
+	</logger>
+	<!-- 3rd Party -->
+	<logger name="org.mybatis.spring">
+		<level value="debug" />
+	</logger>
+	<!-- Service -->
+	<logger name="com.ticketmonster">
+		<level value="debug" />
+	</logger>
+
+	<root level="info">
+		<!-- 상단 Appender 정의 중 주석 처리된 파일 롤링 Appender가 주석 해제 될 경우 이하 주석도 제거 후 진행
+		<appender-ref ref="fileRollingAppender" />
+		 -->
+		<appender-ref ref="consoleAppender" />
+	</root>
+</configuration>
